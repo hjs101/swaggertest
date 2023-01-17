@@ -37,12 +37,12 @@ public class Restcontroller {
 
 	ContentRepository contentRepository;
 	@Tag(name= "crud test")
-	@Operation(summary = "test hello", description = "hello api example")
+	@Operation(summary = "조회", description = "글 조회 API")
 	@ApiResponses({
-			@ApiResponse(responseCode = "200", description = "OK !!"),
-			@ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
-			@ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
-			@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
+			@ApiResponse(responseCode = "200", description = "SUCCESS"),
+			@ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+			@ApiResponse(responseCode = "404", description = "NOT FOUND"),
+			@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
 	})
 	@GetMapping
 	public List<Map<String, Object>> list() {
@@ -59,16 +59,16 @@ public class Restcontroller {
 	}
 
 	@Tag(name= "crud test")
-	@Operation(summary = "test hello", description = "hello api example")
+	@Operation(summary = "글 생성", description = "글 생성 API")
 	@ApiResponses({
-			@ApiResponse(responseCode = "200", description = "OK !!"),
-			@ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
-			@ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
-			@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
+			@ApiResponse(responseCode = "200", description = "SUCCESS"),
+			@ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+			@ApiResponse(responseCode = "404", description = "NOT FOUND"),
+			@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
 	})
 	@PostMapping
-	public Map<String, String> post(@RequestPart("picture") MultipartFile pic, @RequestParam("title") String title,
-			@RequestParam("password") String password) throws IOException {
+	public Map<String, String> post(@Parameter(name="picture", description = "업로드 사진 파일")@RequestPart("picture") MultipartFile pic, @Parameter(name="title", description = "사진 제목")@RequestParam("title") String title,
+									@Parameter(name="password", description = "비밀번호")@RequestParam("password") String password) throws IOException {
 		String path = System.getProperty("user.dir");
 		System.out.println(path);
 
@@ -91,12 +91,12 @@ public class Restcontroller {
 	}
 
 	@Tag(name= "crud test")
-	@Operation(summary = "test hello", description = "hello api example")
+	@Operation(summary = "수정", description = "글 수정 API")
 	@ApiResponses({
-			@ApiResponse(responseCode = "200", description = "OK !!"),
-			@ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
-			@ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
-			@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
+			@ApiResponse(responseCode = "200", description = "SUCCESS"),
+			@ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+			@ApiResponse(responseCode = "404", description = "NOT FOUND"),
+			@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
 	})
 	@PutMapping("/{uid}")
 	public Map<String, String> update(@PathVariable int uid, @RequestPart("picture") MultipartFile pic,
@@ -128,12 +128,12 @@ public class Restcontroller {
 	}
 
 	@Tag(name= "crud test")
-	@Operation(summary = "test hello", description = "hello api example")
+	@Operation(summary = "삭제", description = "글 삭제 API")
 	@ApiResponses({
-			@ApiResponse(responseCode = "200", description = "OK !!"),
-			@ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
-			@ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
-			@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
+			@ApiResponse(responseCode = "200", description = "SUCCESS"),
+			@ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+			@ApiResponse(responseCode = "404", description = "NOT FOUND"),
+			@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
 	})
 	@DeleteMapping("/{uid}")
 	public void delete(@PathVariable int uid, @RequestBody Map<String, Object> body) {
